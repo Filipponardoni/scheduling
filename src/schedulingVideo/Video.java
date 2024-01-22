@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Video {
-	int n = 0;
 	double durata;
-	String nome;
+	String nome="";
 	double tempoInEsecuzione;
+	public int esStimata;
 	static List<Video> vettoreVideo= new ArrayList<>();
 	public Video(int durataSecondi) {
-		nome="v"+n;
-		n++;
 		durata=durataSecondi;
 		tempoInEsecuzione=0;
 	}
@@ -19,6 +17,7 @@ public class Video {
 	public static List<Video> vettore(List<Integer> lista){
 		for(int i=0;i<lista.size();i++) {
 			Video x = new Video(lista.get(i));
+			x.nome="v"+i;
 			vettoreVideo.add(x);
 		}
 		return vettoreVideo;
