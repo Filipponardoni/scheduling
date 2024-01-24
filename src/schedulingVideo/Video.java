@@ -6,12 +6,11 @@ import java.util.List;
 public class Video {
 	double durata;
 	String nome="";
-	double tempoInEsecuzione;
-	public int esStimata;
+	public int esStimate;
 	static List<Video> vettoreVideo= new ArrayList<>();
-	public Video(int durataSecondi) {
+	
+	private Video(int durataSecondi) {
 		durata=durataSecondi;
-		tempoInEsecuzione=0;
 	}
 	
 	public static List<Video> vettore(List<Integer> lista){
