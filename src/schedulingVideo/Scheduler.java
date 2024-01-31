@@ -1,7 +1,16 @@
 package schedulingVideo;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Random;
 
 public class Scheduler{
@@ -37,9 +46,30 @@ public class Scheduler{
 			}
 		}
 	}
+	public static List<Integer> leggiFile() {
+		List<Integer> lista=new ArrayList<>();
+		try(FileReader flussoCaratteri = new FileReader("video.txt");
+				BufferedReader lettoreDiRighe = new BufferedReader(flussoCaratteri);
+				) {
+				String rigaLetta;
+				do {
+					rigaLetta = lettoreDiRighe.readLine();
+					if(rigaLetta!=null) {
+						lista.add(Integer.parseInt(rigaLetta));
+					}
+				}while(rigaLetta!=null);
+			} catch (FileNotFoundException e) {
+				System.out.println("Il file non esiste");
+			} catch (IOException e) {
+				System.out.println("Errore");
+			}catch (NumberFormatException e) {
+				System.out.println("Inserita stringa al posto di un numero");
+			}
+		return lista;
+	}
 	public static void main(String[] args) {
-		List<Integer> lista = Arrays.asList(30, 29, 31, 29, 30, 31, 32);
-		Scheduler x = new Scheduler(Video.vettore(lista),60);
+		List<Integer> lista = Arrays.asList();
+		Scheduler x = new Scheduler(Video.vettore(leggiFile()),60);
 		x.esegui();
 	}
 }
